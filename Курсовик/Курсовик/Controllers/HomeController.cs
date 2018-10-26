@@ -3,28 +3,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Курсовик.Models;
+using Курсовик.DAO;
 
 namespace Курсовик.Controllers
 {
     public class HomeController : Controller
     {
+        ПродукцияDAO recordsDAO = new ПродукцияDAO();
+        // GET: /Home/
+        [Authorize(Roles = "Заведующий складом,Учетчик выдачи")]
         public ActionResult Index()
         {
+            return View(recordsDAO.Список_продукции());
+        }
+
+        // GET: Home/Details/5
+        public ActionResult Details(int id)
+        {
+            return View();
+        }
+        //
+        // GET: /Home/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
+        //
+        // POST: /Home/Create
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult Create(Продукция продукция)
+        {
+            try
+            {
+                if (recordsDAO.Добавить_продукт(продукция))
+                    return RedirectToAction("Index");
+                else
+                    return View("Create");
+            }
+            catch
+            {
+                return View("Create");
+            }
+        }
+        // GET: Home/Create
+        
+
+        // GET: Home/Edit/5
+        public ActionResult Edit(int id)
+        {
             return View();
         }
 
-        public ActionResult About()
+        // POST: Home/Edit/5
+        [HttpPost]
+        public ActionResult Edit(int id, FormCollection collection)
         {
-            ViewBag.Message = "Your application description page.";
+            try
+            {
+                // TODO: Add update logic here
 
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET: Home/Delete/5
+        public ActionResult Delete(int id)
+        {
             return View();
         }
 
-        public ActionResult Contact()
+        // POST: Home/Delete/5
+        [HttpPost]
+        public ActionResult Delete(int id, FormCollection collection)
         {
-            ViewBag.Message = "Your contact page.";
+            try
+            {
+                // TODO: Add delete logic here
 
-            return View();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }
