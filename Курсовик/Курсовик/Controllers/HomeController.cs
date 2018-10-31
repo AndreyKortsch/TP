@@ -10,12 +10,16 @@ namespace Курсовик.Controllers
 {
     public class HomeController : Controller
     {
-        ПродукцияDAO recordsDAO = new ПродукцияDAO();
-        // GET: /Home/
-        [Authorize(Roles = "Заведующий складом,Учетчик выдачи")]
+        ПродукцияDAO ПоставщикDAO = new ПродукцияDAO();
+       // GET: Home
         public ActionResult Index()
         {
-            return View(recordsDAO.Список_продукции());
+           if (User.IsInRole("Администратор"))
+                return RedirectToAction("Index", "Поставщик");
+            if (User.IsInRole("Заведующий складом"))
+                return RedirectToAction("Index", "Продукция");
+            
+                return RedirectToAction("Index", "Поставщик");
         }
 
         // GET: Home/Details/5
@@ -23,31 +27,29 @@ namespace Курсовик.Controllers
         {
             return View();
         }
-        //
-        // GET: /Home/Create
+
+        // GET: Home/Create
         public ActionResult Create()
         {
             return View();
         }
-        //
-        // POST: /Home/Create
-        [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(Продукция продукция)
+
+        // POST: Home/Create
+        [HttpPost]
+        public ActionResult Create(FormCollection collection)
         {
             try
             {
-                if (recordsDAO.Добавить_продукт(продукция))
-                    return RedirectToAction("Index");
-                else
-                    return View("Create");
+                // TODO: Add insert logic here
+
+                return RedirectToAction("Index");
             }
             catch
+
             {
-                return View("Create");
+                return View();
             }
         }
-        // GET: Home/Create
-        
 
         // GET: Home/Edit/5
         public ActionResult Edit(int id)

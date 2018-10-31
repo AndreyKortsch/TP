@@ -50,7 +50,7 @@ namespace Курсовик.DAO
                 SqlCommand cmd = new SqlCommand(
                 "INSERT INTO Список_продукции (код_продукции, номер_категории, " +
                 "материал, масса, количество, цена_за_единицу) " +
-                "VALUES (@Title, @Author, @Date)",Сonnection);
+                "VALUES (@код_продукции, @номер_категории, @материал, @масса, @количество,@цена_за_единицу)",Сonnection);
                 cmd.Parameters.Add(new SqlParameter("@код_продукции", продукт.Код_продукции));
                 cmd.Parameters.Add(new SqlParameter("@номер_категории", продукт.Категория));
                 cmd.Parameters.Add(new SqlParameter("@материал",  продукт.Материал));

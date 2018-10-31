@@ -72,7 +72,7 @@ namespace Курсовик.Controllers
             {
                 return View(model);
             }
-
+            
             // Сбои при входе не приводят к блокированию учетной записи
             // Чтобы ошибки при вводе пароля инициировали блокирование учетной записи, замените на shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
@@ -163,7 +163,7 @@ namespace Курсовик.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return View(model);
                 }
                 AddErrors(result);
             }
@@ -392,7 +392,12 @@ namespace Курсовик.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            if (User.IsInRole("Администратор"))
+                return RedirectToAction("Index", "Поставщик");
+            if (User.IsInRole("Заведующий складом"))
+                return RedirectToAction("Index", "Продукция");
+
+            return RedirectToAction("Index", "Поставщик");
         }
 
         //

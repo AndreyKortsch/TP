@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Курсовик.Models.Поставщик>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Код_поставщика)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Наименование_организации)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Адрес)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Почта)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Телефон)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Код_поставщика)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Наименование_организации)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Адрес)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Почта)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Телефон)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.Код_поставщика }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Код_поставщика  }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+        <td>
+            @Html.ActionLink("Добавить категории", "Index","Категория") |
+            @Html.ActionLink("Удалить категории", "Delete","Продукция", new { /* id=item.PrimaryKey */ }) |
+            
+        </td>
+    </tr>
+}
+
+</table>
