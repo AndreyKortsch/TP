@@ -16,11 +16,14 @@ namespace Курсовик.Controllers
         {
             return View(КатегорияDAO.Список_категорий());
         }
-
+        public ActionResult Index1(int id)
+        {
+            return View(КатегорияDAO.Список_категорий(id));
+        }
         // GET: Категория/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(КатегорияDAO.Категория(id));
         }
 
         // GET: Категория/Create
@@ -31,13 +34,17 @@ namespace Курсовик.Controllers
 
         // POST: Категория/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Категория категория)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (КатегорияDAO.Добавить_категорию(категория))
+                    return RedirectToAction("Index");
+                else
+                    return View("Create");
 
-                return RedirectToAction("Index");
+
+                
             }
             catch
             {
@@ -48,18 +55,19 @@ namespace Курсовик.Controllers
         // GET: Категория/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(КатегорияDAO.Категория(id));
         }
 
         // POST: Категория/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Категория категория)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (КатегорияDAO.Изменить_категорию(категория))
+                    return RedirectToAction("Index");
+                else
+                    return View("Edit");
             }
             catch
             {
@@ -70,18 +78,21 @@ namespace Курсовик.Controllers
         // GET: Категория/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(КатегорияDAO.Категория(id));
         }
 
         // POST: Категория/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Категория категория)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (КатегорияDAO.Удалить_категорию(категория))
+                    return RedirectToAction("Index");
+                else
+                    return View("Delete");
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {

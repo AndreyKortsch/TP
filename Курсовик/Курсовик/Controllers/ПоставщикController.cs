@@ -22,7 +22,7 @@ namespace Курсовик.Controllers
         // GET: Home1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(ПоставщикDAO.Поставщик(id));
         }
 
         // GET: Home1/Create
@@ -53,18 +53,21 @@ namespace Курсовик.Controllers
         // GET: Home1/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(ПоставщикDAO.Поставщик(id));
         }
 
         // POST: Home1/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Поставщик поставщик)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ПоставщикDAO.Изменить_поставщика(поставщик))
+                    return RedirectToAction("Index");
+                else
+                    return View("Edit");
+                
             }
             catch
             {
@@ -75,18 +78,19 @@ namespace Курсовик.Controllers
         // GET: Home1/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(ПоставщикDAO.Поставщик(id));
         }
 
         // POST: Home1/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Поставщик поставщик)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ПоставщикDAO.Удалить_поставщика(поставщик))
+                    return RedirectToAction("Index");
+                else
+                    return View("Delete");
             }
             catch
             {

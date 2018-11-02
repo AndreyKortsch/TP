@@ -43,14 +43,17 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new {  id=item.Код_поставщика }) |
             @Html.ActionLink("Details", "Details", new { id=item.Код_поставщика  }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Delete", "Delete", new { id = item.Код_поставщика })
         </td>
         <td>
-            @Html.ActionLink("Добавить категории", "Index","Категория") |
-            @Html.ActionLink("Удалить категории", "Delete","Продукция", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Добавить категории", "Index1", "Категория", new { id = item.Код_поставщика }, null) |
+            @Html.ActionLink("Удалить категории", "Delete","Категория", new { id=item.Код_поставщика }, null) 
             
         </td>
     </tr>
 }
 
 </table>
+<p>
+    @Html.ActionLink("Все категории", "Index","Категория")
+</p>

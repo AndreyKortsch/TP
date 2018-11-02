@@ -1,0 +1,44 @@
+﻿@model Курсовик.Models.Категория
+
+<div>
+    <h4>Категория</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_категории)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_категории)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_создания)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_создания)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество_товара)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество_товара)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

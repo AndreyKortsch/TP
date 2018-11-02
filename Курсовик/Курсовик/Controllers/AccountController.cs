@@ -392,12 +392,19 @@ namespace Курсовик.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            if (User.IsInRole("Администратор"))
-                return RedirectToAction("Index", "Поставщик");
-            if (User.IsInRole("Заведующий складом"))
-                return RedirectToAction("Index", "Продукция");
-
-            return RedirectToAction("Index", "Поставщик");
+            AuthorizeAttribute Role = new AuthorizeAttribute();
+            switch (Role.Roles)
+            {
+                case "Администратор":
+                    return RedirectToAction("Index", "Поставщик");
+                case "Заведующий складом":
+                    return RedirectToAction("Index", "Продукция");
+                case "Учетчик выдачи":
+                    return RedirectToAction("Index", "Категория");
+                default:
+                    break;
+            }
+            return RedirectToAction("Index", "Поступление");
         }
 
         //

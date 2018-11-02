@@ -89,5 +89,53 @@ namespace Курсовик.DAO
             }
             return result;
         }
+        public Поставщик Поставщик(int id)
+        {
+            Connect();
+            Поставщик Поставщик = new Поставщик();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Список_поставщиков WHERE код_поставщика ="+id, Сonnection);
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                Поставщик.Код_поставщика = Convert.ToInt32(reader["код_поставщика"]);
+                Поставщик.Наименование_организации = Convert.ToString(reader["наименование_организации"]);
+                Поставщик.Адрес = Convert.ToString(reader["адрес"]);
+                Поставщик.Почта = Convert.ToString(reader["почта"]);
+                Поставщик.Телефон = Convert.ToString(reader["телефон"]);
+                reader.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return Поставщик;
+        }
+        public bool Изменить_поставщика(Поставщик поставщик)
+        {
+            Connect();
+            bool result = true;
+            try
+            {
+                String sql = string.Format("UPDATE Список_поставщиков SET наименование_организации='{0}', адрес='{1}', почта='{2}', телефон={3}" +
+                "WHERE Код_поставщика={4}", поставщик.Наименование_организации, поставщик.Адрес, поставщик.Почта, поставщик.Телефон, поставщик.Код_поставщика);
+                SqlCommand cmd = new SqlCommand(sql, Сonnection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return result;
+        }
     }
 }

@@ -1,0 +1,52 @@
+﻿@model Курсовик.Models.Поставщик
+
+<div>
+    <h4>Поставщик</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_поставщика)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_поставщика)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Наименование_организации)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Наименование_организации)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Адрес)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Адрес)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Почта)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Почта)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Телефон)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Телефон)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
