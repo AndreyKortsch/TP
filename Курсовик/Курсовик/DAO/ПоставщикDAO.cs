@@ -68,15 +68,14 @@ namespace Курсовик.DAO
             return result;
         }
 
-        public bool Удалить_поставщика(Поставщик поставщик)
+        public bool Удалить_поставщика(int id)
         {
             Connect();
             bool result = true;
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "DELETE FROM Список_поставщиков" +
-                "WHERE Код_поставщика=" + поставщик.Код_поставщика, Сonnection);
+                "DELETE FROM Список_поставщиков WHERE код_поставщика=" + id, Сonnection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)
@@ -116,14 +115,14 @@ namespace Курсовик.DAO
             }
             return Поставщик;
         }
-        public bool Изменить_поставщика(Поставщик поставщик)
+        public bool Изменить_поставщика(int id, Поставщик поставщик)
         {
             Connect();
             bool result = true;
             try
             {
-                String sql = string.Format("UPDATE Список_поставщиков SET наименование_организации='{0}', адрес='{1}', почта='{2}', телефон={3}" +
-                "WHERE Код_поставщика={4}", поставщик.Наименование_организации, поставщик.Адрес, поставщик.Почта, поставщик.Телефон, поставщик.Код_поставщика);
+                String sql = string.Format("UPDATE Список_поставщиков SET наименование_организации='{0}', адрес='{1}', почта='{2}', телефон='{3}' " +
+                "WHERE код_поставщика='{4}'", поставщик.Наименование_организации, поставщик.Адрес, поставщик.Почта, поставщик.Телефон, id);
                 SqlCommand cmd = new SqlCommand(sql, Сonnection);
                 cmd.ExecuteNonQuery();
             }

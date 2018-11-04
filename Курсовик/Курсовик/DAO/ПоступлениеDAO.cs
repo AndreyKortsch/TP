@@ -113,7 +113,7 @@ namespace Курсовик.DAO
                 }
                 return Поступление;
             }
-            public bool Изменить_поставщика(Поступление поступление)
+            public bool Изменить_поступление(Поступление поступление)
             {
                 Connect();
                 bool result = true;

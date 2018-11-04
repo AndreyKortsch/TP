@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27703.2018
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Курсовик", "Курсовик\Курсовик.csproj", "{3FBEB13B-DFD7-4B5A-A2A1-8420A2F18F38}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {19DBA244-46B2-46A1-94A9-87EBF48C9112}
+		SolutionGuid = {19767560-2DCB-4DD6-AA4E-C64397CACE37}
 	EndGlobalSection
 EndGlobal

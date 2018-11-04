@@ -391,20 +391,8 @@ namespace Курсовик.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
-            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            AuthorizeAttribute Role = new AuthorizeAttribute();
-            switch (Role.Roles)
-            {
-                case "Администратор":
-                    return RedirectToAction("Index", "Поставщик");
-                case "Заведующий складом":
-                    return RedirectToAction("Index", "Продукция");
-                case "Учетчик выдачи":
-                    return RedirectToAction("Index", "Категория");
-                default:
-                    break;
-            }
-            return RedirectToAction("Index", "Поступление");
+           AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+           return RedirectToAction("Login");
         }
 
         //

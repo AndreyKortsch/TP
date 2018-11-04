@@ -27,7 +27,7 @@ namespace Курсовик.DAO
                         товар.Масса =Convert.ToUInt32(reader["масса"]);
                         товар.Материал = Convert.ToString(reader["материал"]);
                         товар.Цена_за_единицу= Convert.ToInt32(reader["цена_за_единицу"]);
-                    Список_продукции.Add(товар);
+                        Список_продукции.Add(товар);
                     }
                     reader.Close();
                 }
@@ -57,6 +57,77 @@ namespace Курсовик.DAO
                 cmd.Parameters.Add(new SqlParameter("@масса", продукт.Масса));
                 cmd.Parameters.Add(new SqlParameter("@количество", продукт.Количество));
                 cmd.Parameters.Add(new SqlParameter("@цена_за_единицу", продукт.Цена_за_единицу));
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return result;
+        }
+        public bool Удалить_продукцию(Продукция продукция)
+        {
+            Connect();
+            bool result = true;
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                "DELETE FROM Список_продукции" +
+                "WHERE код_продукции=" + продукция.Код_продукции, Сonnection);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return result;
+        }
+        public Продукция Продукция(int id)
+        {
+            Connect();
+            Продукция товар = new Продукция();
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM Список_продукции WHERE код_продукции =" + id, Сonnection);
+
+                SqlDataReader reader = command.ExecuteReader();
+                reader.Read();
+                товар.Код_продукции = Convert.ToString(reader["код_продукции"]);
+                товар.Категория = Convert.ToInt32(reader["номер_категории"]);
+                товар.Количество = Convert.ToInt32(reader["количество"]);
+                товар.Масса = Convert.ToUInt32(reader["масса"]);
+                товар.Материал = Convert.ToString(reader["материал"]);
+                товар.Цена_за_единицу = Convert.ToInt32(reader["цена_за_единицу"]);
+                reader.Close();
+            }
+            catch (Exception)
+            {
+
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return  товар;
+        }
+        public bool Изменить_продукцию(Продукция продукция)
+        {
+            Connect();
+            bool result = true;
+            try
+            {
+                String sql = string.Format("UPDATE Список_продукции SET номер_категории='{0}', количество='{1}', масса='{2}', материал={3}, цена_за_единицу={4}" +
+                "WHERE код_продукции={4}", продукция.Категория, продукция.Количество, 
+                продукция.Масса, продукция.Материал, продукция.Цена_за_единицу, продукция.Код_продукции);
+                SqlCommand cmd = new SqlCommand(sql, Сonnection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)

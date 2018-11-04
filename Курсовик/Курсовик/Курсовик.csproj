@@ -196,14 +196,17 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\КатегорияController.cs" />
     <Compile Include="Controllers\ПоставщикController.cs" />
+    <Compile Include="Controllers\Поставщик_категорияController.cs" />
     <Compile Include="Controllers\ПоступлениеController.cs" />
     <Compile Include="Controllers\ПродукцияController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\КатегорияDAO.cs" />
     <Compile Include="DAO\ПоставщикDAO.cs" />
+    <Compile Include="DAO\Поставщик_категорияDAO.cs" />
     <Compile Include="DAO\ПоступлениеDAO.cs" />
     <Compile Include="DAO\ПродукцияDAO.cs" />
     <Compile Include="Global.asax.cs">
@@ -213,6 +216,7 @@
     <Compile Include="Models\Выдача.cs" />
     <Compile Include="Models\Категория.cs" />
     <Compile Include="Models\Поставщик.cs" />
+    <Compile Include="Models\Поставщик_категория.cs" />
     <Compile Include="Models\Поступление.cs" />
     <Compile Include="Models\Продукция.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -288,11 +292,25 @@
     <Content Include="Views\Категория\Create.cshtml" />
     <Content Include="Views\Категория\Edit.cshtml" />
     <Content Include="Views\Категория\Delete.cshtml" />
+    <Content Include="Views\Поступление\Index.cshtml" />
+    <Content Include="Views\Поступление\Details.cshtml" />
+    <Content Include="Views\Поступление\Create.cshtml" />
+    <Content Include="Views\Поступление\Edit.cshtml" />
+    <Content Include="Views\Поступление\Delete.cshtml" />
+    <Content Include="Views\Продукция\Details.cshtml" />
+    <Content Include="Views\Продукция\Create.cshtml" />
+    <Content Include="Views\Продукция\Edit.cshtml" />
+    <Content Include="Views\Продукция\Delete.cshtml" />
+    <Content Include="Views\Категория\Index2.cshtml" />
+    <Content Include="Views\Категория\Index3.cshtml" />
+    <Content Include="Views\Поставщик_категория\Index1.cshtml" />
+    <Content Include="Views\Поставщик_категория\Index2.cshtml" />
+    <Content Include="Views\Поставщик_категория\Index3.cshtml" />
+    <Content Include="Views\Поставщик_категория\Index4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="obj\" />
-    <Folder Include="Views\Поступление\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

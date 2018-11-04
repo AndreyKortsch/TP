@@ -23,8 +23,8 @@ namespace Курсовик.DAO
                     Категория категория = new Категория();
                     категория.Код_категории = Convert.ToInt32(reader["номер"]);
                     категория.Название = Convert.ToString(reader["название"]);
-                    категория.Количество_товара = Convert.ToInt32(reader["количество_товаров"]);
-                    категория.Дата_создания = Convert.ToDateTime(reader["дата_создания"]);
+                    категория.Количество_товара = Convert.ToInt32(reader["количество"]);
+                    категория.Дата_создания = Convert.ToDateTime(reader["дата"]);
                     Список_категорий.Add(категория);
                 }
                 reader.Close();
@@ -39,38 +39,7 @@ namespace Курсовик.DAO
             }
             return Список_категорий;
         }
-        public List<Категория> Список_категорий(int id)
-        {
-            Connect();
-            List<Категория> Список_категорий = new List<Категория>();
-            try
-            {
-                SqlCommand command = new SqlCommand("SELECT * FROM Список_категорий " +
-                    "WHERE номер not in (SELECT номер категории from Поставщик_категория WHERE " +
-                    "номер поставщика="+id+")", Сonnection);
-
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Категория категория = new Категория();
-                    категория.Код_категории = Convert.ToInt32(reader["номер"]);
-                    категория.Название = Convert.ToString(reader["название"]);
-                    категория.Количество_товара = Convert.ToInt32(reader["количество_товаров"]);
-                    категория.Дата_создания = Convert.ToDateTime(reader["дата_создания"]);
-                    Список_категорий.Add(категория);
-                }
-                reader.Close();
-            }
-            catch (Exception)
-            {
-
-            }
-            finally
-            {
-                Disconnect();
-            }
-            return Список_категорий;
-        }
+        
         public bool Добавить_категорию(Категория категория)
         {
             bool result = true;
@@ -78,11 +47,10 @@ namespace Курсовик.DAO
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Список_категорий (название, количество_товаров, " +
-                "дата_создания) VALUES (@назван, @кол, @время)", Сonnection);
-                cmd.Parameters.Add(new SqlParameter("@назван", категория.Название));
-                cmd.Parameters.Add(new SqlParameter("@кол", '0'));
-                cmd.Parameters.Add(new SqlParameter("@время", DateTime.Now));
+                "INSERT INTO Список_категорий(название, количество, дата) VALUES (@название, @количество, @дата)", Сonnection);
+                cmd.Parameters.Add(new SqlParameter("@название", категория.Название));
+                cmd.Parameters.Add(new SqlParameter("@количество", '0'));
+                cmd.Parameters.Add(new SqlParameter("@дата", DateTime.Now));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -96,20 +64,21 @@ namespace Курсовик.DAO
             }
             return result;
         }
+       
         public Категория Категория(int id)
         {
             Connect();
             Категория Категория = new Категория();
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM Список_поставщиков WHERE код_поставщика =" + id, Сonnection);
+                SqlCommand command = new SqlCommand("SELECT * FROM Список_категорий WHERE номер =" + id, Сonnection);
 
                 SqlDataReader reader = command.ExecuteReader();
                 reader.Read();
                 Категория.Код_категории = Convert.ToInt32(reader["номер"]);
                 Категория.Название = Convert.ToString(reader["название"]);
-                Категория.Количество_товара = Convert.ToInt32(reader["количество_товаров"]);
-                Категория.Дата_создания = Convert.ToDateTime(reader["дата_создания"]);
+                Категория.Количество_товара = Convert.ToInt32(reader["количество"]);
+                Категория.Дата_создания = Convert.ToDateTime(reader["дата"]);
                 reader.Close();
             }
             catch (Exception)
@@ -122,14 +91,14 @@ namespace Курсовик.DAO
             }
             return Категория;
         }
-        public bool Изменить_категорию(Категория категория)
+        public bool Изменить_категорию(int id, Категория категория)
         {
             Connect();
             bool result = true;
             try
             {
-                String sql = string.Format("UPDATE Список_категорий SET название='{0}', количество_товаров='{1}', дата_создания='{2}'" +
-                "WHERE номер={3}", категория.Название, категория.Количество_товара, категория.Дата_создания, категория.Код_категории);
+                String sql = string.Format("UPDATE Список_категорий SET название='{0}',  дата='{1}' " +
+                "WHERE номер='{2}'", категория.Название, DateTime.Now, id);
                 SqlCommand cmd = new SqlCommand(sql, Сonnection);
                 cmd.ExecuteNonQuery();
             }
@@ -143,15 +112,14 @@ namespace Курсовик.DAO
             }
             return result;
         }
-        public bool Удалить_категорию(Категория категория)
+        public bool Удалить_категорию(int id,Категория категория)
         {
             Connect();
             bool result = true;
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "DELETE FROM Список_категорий" +
-                "WHERE номер=" + категория.Код_категории, Сonnection);
+                "DELETE FROM Список_категорий WHERE номер =" + id, Сonnection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)

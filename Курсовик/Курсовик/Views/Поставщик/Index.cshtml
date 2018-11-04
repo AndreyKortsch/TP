@@ -46,8 +46,8 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.Код_поставщика })
         </td>
         <td>
-            @Html.ActionLink("Добавить категории", "Index1", "Категория", new { id = item.Код_поставщика }, null) |
-            @Html.ActionLink("Удалить категории", "Delete","Категория", new { id=item.Код_поставщика }, null) 
+            @Html.ActionLink("Добавить категории", "Index1", "Поставщик_категория", new { id = item.Код_поставщика }, null) |
+            @Html.ActionLink("Удалить категории", "Index2","Поставщик_категория", new { id=item.Код_поставщика }, null) 
             
         </td>
     </tr>

@@ -33,7 +33,7 @@ namespace Курсовик.Controllers
 
         // POST: Home1/Create
         [HttpPost]
-        public ActionResult Create(Поставщик поставщик)
+        public ActionResult Create([Bind(Exclude = "код_поставщика")]Поставщик поставщик)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Курсовик.Controllers
             try
             {
                 // TODO: Add update logic here
-                if (ПоставщикDAO.Изменить_поставщика(поставщик))
+                if (ПоставщикDAO.Изменить_поставщика(id,поставщик))
                     return RedirectToAction("Index");
                 else
                     return View("Edit");
@@ -87,7 +87,7 @@ namespace Курсовик.Controllers
         {
             try
             {
-                if (ПоставщикDAO.Удалить_поставщика(поставщик))
+                if (ПоставщикDAO.Удалить_поставщика(id))
                     return RedirectToAction("Index");
                 else
                     return View("Delete");

@@ -39,7 +39,15 @@
             @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
             @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
+        <td>
+            @Html.ActionLink("Добавить", "Index3", "Категория", new { id = item.Код_категории }, null)
+
+        </td>
+        
     </tr>
 }
 
 </table>
+<p>
+    @Html.ActionLink("Назад", "Index", "Поставщик")
+</p>

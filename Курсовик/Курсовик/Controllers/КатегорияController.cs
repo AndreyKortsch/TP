@@ -8,18 +8,17 @@ using Курсовик.DAO;
 
 namespace Курсовик.Controllers
 {
+    [Authorize(Roles = "Администратор,Учетчик выдачи")]
     public class КатегорияController : Controller
     {
         КатегорияDAO КатегорияDAO = new КатегорияDAO();
+        
         // GET: Категория
         public ActionResult Index()
         {
             return View(КатегорияDAO.Список_категорий());
         }
-        public ActionResult Index1(int id)
-        {
-            return View(КатегорияDAO.Список_категорий(id));
-        }
+        
         // GET: Категория/Details/5
         public ActionResult Details(int id)
         {
@@ -64,7 +63,7 @@ namespace Курсовик.Controllers
         {
             try
             {
-                if (КатегорияDAO.Изменить_категорию(категория))
+                if (КатегорияDAO.Изменить_категорию(id,категория))
                     return RedirectToAction("Index");
                 else
                     return View("Edit");
@@ -87,7 +86,7 @@ namespace Курсовик.Controllers
         {
             try
             {
-                if (КатегорияDAO.Удалить_категорию(категория))
+                if (КатегорияDAO.Удалить_категорию(id,категория))
                     return RedirectToAction("Index");
                 else
                     return View("Delete");

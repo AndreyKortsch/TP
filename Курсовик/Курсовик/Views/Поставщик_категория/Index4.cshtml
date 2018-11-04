@@ -1,0 +1,34 @@
+﻿@model Курсовик.Models.Поставщик_категория
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Поставщик_категория</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_поставщика)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_поставщика)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_категории)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_категории)
+        </dd>
+
+   </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index2",new { id = Model.Код_поставщика })
+        </div>
+    }
+</div>

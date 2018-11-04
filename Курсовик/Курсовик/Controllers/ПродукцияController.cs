@@ -23,7 +23,7 @@ namespace Курсовик.Controllers
         // GET: /Home/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(ПродукцияDAO.Продукция(id));
         }
         //
         // GET: /Home/Create
@@ -54,18 +54,21 @@ namespace Курсовик.Controllers
         // GET: Home/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(ПродукцияDAO.Продукция(id));
         }
 
         // POST: Home/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Продукция продукция)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ПродукцияDAO.Изменить_продукцию(продукция))
+                    return RedirectToAction("Index");
+                else
+                    return View("Edit");
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -76,18 +79,21 @@ namespace Курсовик.Controllers
         // GET: Home/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(ПродукцияDAO.Продукция(id));
         }
 
         // POST: Home/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Продукция продукция)
         {
             try
             {
-                // TODO: Add delete logic here
+                if (ПродукцияDAO.Удалить_продукцию(продукция))
+                    return RedirectToAction("Index");
+                else
+                    return View("Delete");
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {

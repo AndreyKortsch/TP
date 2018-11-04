@@ -10,17 +10,17 @@ namespace Курсовик.Controllers
 {
     public class ПоступлениеController : Controller
     {
-        ПродукцияDAO ПродукцияDAO = new ПродукцияDAO();
+        ПоступлениеDAO ПоступлениеDAO = new ПоступлениеDAO();
         // GET: Поступление
         public ActionResult Index()
         {
-            return View();
+            return View(ПоступлениеDAO.Журнал_поступлений());
         }
 
         // GET: Поступление/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(ПоступлениеDAO.Поступление(id));
         }
 
         // GET: Поступление/Create
@@ -31,13 +31,16 @@ namespace Курсовик.Controllers
 
         // POST: Поступление/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Поступление поступление)
         {
             try
             {
-                // TODO: Add insert logic here
+                if (ПоступлениеDAO.Добавить_поступление(поступление))
+                    return RedirectToAction("Index");
+                else
+                    return View("Create");
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -48,18 +51,21 @@ namespace Курсовик.Controllers
         // GET: Поступление/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(ПоступлениеDAO.Поступление(id));
         }
 
         // POST: Поступление/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Поступление поступление)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ПоступлениеDAO.Изменить_поступление(поступление))
+                    return RedirectToAction("Index");
+                else
+                    return View("Edit");
 
-                return RedirectToAction("Index");
+                
             }
             catch
             {
@@ -75,13 +81,14 @@ namespace Курсовик.Controllers
 
         // POST: Поступление/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Поступление поступление)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                if (ПоступлениеDAO.Удалить_поступление(поступление))
+                    return RedirectToAction("Index");
+                else
+                    return View("Delete");
             }
             catch
             {
