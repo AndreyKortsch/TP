@@ -48,7 +48,7 @@ namespace Курсовик.DAO
             try
             {
                 SqlCommand cmd = new SqlCommand(
-                "DELETE FROM Поставщик_категория WHERE (номер_поставщика="+a+") and (номер_категории="+id+")" , Сonnection);
+                "DELETE FROM Поставщик_категория WHERE (номер_поставщика="+id+") and (номер_категории="+a+")" , Сonnection);
                 cmd.ExecuteNonQuery();
             }
             catch (Exception)
@@ -69,8 +69,8 @@ namespace Курсовик.DAO
             {
                 SqlCommand cmd = new SqlCommand(
                 "INSERT INTO Поставщик_категория(номер_категории, номер_поставщика) VALUES (@номер_категории, @номер_поставщика)", Сonnection);
-                cmd.Parameters.Add(new SqlParameter("@номер_категории", id));
-                cmd.Parameters.Add(new SqlParameter("@номер_поставщика", a));
+                cmd.Parameters.Add(new SqlParameter("@номер_категории", a));
+                cmd.Parameters.Add(new SqlParameter("@номер_поставщика", id));
                 cmd.ExecuteNonQuery();
             }
             catch (Exception ex)

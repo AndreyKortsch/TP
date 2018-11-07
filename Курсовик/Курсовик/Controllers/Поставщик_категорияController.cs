@@ -27,8 +27,8 @@ namespace Курсовик.Controllers
         public ActionResult Index4(int id, int a)
         {
             Поставщик_категория av = new Поставщик_категория();
-            av.Код_поставщика = a;
-            av.Код_категории = id;
+            av.Код_поставщика = id;
+            av.Код_категории = a;
             return View(av);
         }
         [HttpPost]
@@ -37,7 +37,9 @@ namespace Курсовик.Controllers
             try
             {
                 if (Поставщик_категорияDAO.Удалить_категорию(id, a))
+                {
                     return RedirectToAction("Index2", new { id });
+                }
                 else
                     return View("Index4");
             }
@@ -49,8 +51,8 @@ namespace Курсовик.Controllers
         public ActionResult Index3(int id, int a)
         {
             Поставщик_категория av = new Поставщик_категория();
-            av.Код_поставщика = a;
-            av.Код_категории = id;
+            av.Код_поставщика = id;
+            av.Код_категории = a;
             return View(av);
         }
         [HttpPost]

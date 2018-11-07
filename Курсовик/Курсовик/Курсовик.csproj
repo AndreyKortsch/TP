@@ -197,6 +197,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ВыдачаController.cs" />
     <Compile Include="Controllers\КатегорияController.cs" />
     <Compile Include="Controllers\ПоставщикController.cs" />
     <Compile Include="Controllers\Поставщик_категорияController.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="Controllers\ПродукцияController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DAO\DAO.cs" />
+    <Compile Include="DAO\ВыдачаDAO.cs" />
     <Compile Include="DAO\КатегорияDAO.cs" />
     <Compile Include="DAO\ПоставщикDAO.cs" />
     <Compile Include="DAO\Поставщик_категорияDAO.cs" />
@@ -287,7 +289,6 @@
     <Content Include="Views\Поставщик\Details.cshtml" />
     <Content Include="Views\Поставщик\Delete.cshtml" />
     <Content Include="Views\Поставщик\Edit.cshtml" />
-    <Content Include="Views\Категория\Index1.cshtml" />
     <Content Include="Views\Категория\Details.cshtml" />
     <Content Include="Views\Категория\Create.cshtml" />
     <Content Include="Views\Категория\Edit.cshtml" />
@@ -301,12 +302,17 @@
     <Content Include="Views\Продукция\Create.cshtml" />
     <Content Include="Views\Продукция\Edit.cshtml" />
     <Content Include="Views\Продукция\Delete.cshtml" />
-    <Content Include="Views\Категория\Index2.cshtml" />
-    <Content Include="Views\Категория\Index3.cshtml" />
     <Content Include="Views\Поставщик_категория\Index1.cshtml" />
     <Content Include="Views\Поставщик_категория\Index2.cshtml" />
     <Content Include="Views\Поставщик_категория\Index3.cshtml" />
     <Content Include="Views\Поставщик_категория\Index4.cshtml" />
+    <Content Include="Views\Продукция\Index1.cshtml" />
+    <Content Include="Views\Выдача\Index.cshtml" />
+    <Content Include="Views\Выдача\Details.cshtml" />
+    <Content Include="Views\Выдача\Create.cshtml" />
+    <Content Include="Views\Выдача\Edit.cshtml" />
+    <Content Include="Views\Выдача\Delete.cshtml" />
+    <Content Include="Views\Выдача\Index3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

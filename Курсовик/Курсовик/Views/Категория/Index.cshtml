@@ -35,9 +35,21 @@
             @Html.DisplayFor(modelItem => item.Количество_товара)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Код_категории }) |
-            @Html.ActionLink("Details", "Details", new {  id=item.Код_категории }) |
-            @Html.ActionLink("Delete", "Delete", new {  id=item.Код_категории })
+            @if (User.IsInRole("Администратор"))
+            {
+                @Html.ActionLink("Edit", "Edit", new { id = item.Код_категории })}|
+            @if (User.IsInRole("Администратор"))
+            {
+                @Html.ActionLink("Details", "Details", new { id = item.Код_категории })} |
+            @if (User.IsInRole("Администратор"))
+            {
+                @Html.ActionLink("Delete", "Delete", new { id = item.Код_категории })}
+        </td>
+        <td>
+            @if (User.IsInRole("Учетчик выдачи"))
+            {
+                @Html.ActionLink("Выбрать", "Index1", "Продукция", new { id = item.Код_категории }, null)
+            }
         </td>
     </tr>
 }

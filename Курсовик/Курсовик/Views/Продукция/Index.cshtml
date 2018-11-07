@@ -9,6 +9,9 @@
             @Html.DisplayNameFor(model => model.Код_продукции)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Название)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Категория)
         </th>
         <th>
@@ -26,32 +29,42 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Код_продукции)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Категория)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Материал)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Масса)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Цена_за_единицу)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Количество)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Код_продукции)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Название)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Категория)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Материал)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Масса)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Цена_за_единицу)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Количество)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Код_продукции }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Код_продукции }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Код_продукции })
+            </td>
+        </tr>
+    }
 
 </table>
+<p>
+    @Html.ActionLink("Список выдач", "Index", "Выдача")
+</p>
+<p>
+    @Html.ActionLink("Список поступлений", "Index", "Поступление")
+</p>

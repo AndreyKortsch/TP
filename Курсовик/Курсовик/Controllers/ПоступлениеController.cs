@@ -8,6 +8,7 @@ using Курсовик.DAO;
 
 namespace Курсовик.Controllers
 {
+    [Authorize(Roles = "Заведующий складом, Учетчик приема")]
     public class ПоступлениеController : Controller
     {
         ПоступлениеDAO ПоступлениеDAO = new ПоступлениеDAO();
@@ -60,7 +61,7 @@ namespace Курсовик.Controllers
         {
             try
             {
-                if (ПоступлениеDAO.Изменить_поступление(поступление))
+                if (ПоступлениеDAO.Изменить_поступление(id,поступление))
                     return RedirectToAction("Index");
                 else
                     return View("Edit");
@@ -76,7 +77,7 @@ namespace Курсовик.Controllers
         // GET: Поступление/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(ПоступлениеDAO.Поступление(id));
         }
 
         // POST: Поступление/Delete/5
@@ -85,7 +86,7 @@ namespace Курсовик.Controllers
         {
             try
             {
-                if (ПоступлениеDAO.Удалить_поступление(поступление))
+                if (ПоступлениеDAO.Удалить_поступление(id,поступление))
                     return RedirectToAction("Index");
                 else
                     return View("Delete");

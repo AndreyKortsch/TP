@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Курсовик.Models.Выдача>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Код_выдачи)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Код_продукции)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Дата_и_время)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Количество)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Код_выдачи)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Код_продукции)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Дата_и_время)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Количество)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

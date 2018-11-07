@@ -9,7 +9,7 @@ using Курсовик.DAO;
 
 namespace Курсовик.Controllers
 {
-    [Authorize(Roles = "Заведующий складом")]
+    [Authorize(Roles = "Заведующий складом,Учетчик выдачи")]
     public class ПродукцияController : Controller
     {   
         ПродукцияDAO ПродукцияDAO = new ПродукцияDAO();
@@ -17,16 +17,22 @@ namespace Курсовик.Controllers
         
         public ActionResult Index()
         {
-            return View(ПродукцияDAO.Список_продукции());
+            String sql = "SELECT * FROM Список_продукции";
+            return View(ПродукцияDAO.Список_продукции(sql));
         }
-       
+        public ActionResult Index1(int id)
+        {
+            String sql = "SELECT * FROM Список_продукции WHERE номер_категории="+id;
+            return View(ПродукцияDAO.Список_продукции(sql));
+        }
         // GET: /Home/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(String id)
         {
             return View(ПродукцияDAO.Продукция(id));
         }
         //
         // GET: /Home/Create
+        [Authorize(Roles = "Заведующий складом")]
         public ActionResult Create()
         {
             return View();
@@ -49,21 +55,21 @@ namespace Курсовик.Controllers
             }
         }
         // GET: Home/Create
-        
+        [Authorize(Roles = "Заведующий складом")]
 
         // GET: Home/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(String id)
         {
             return View(ПродукцияDAO.Продукция(id));
         }
 
         // POST: Home/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, Продукция продукция)
+        public ActionResult Edit(String id, Продукция продукция)
         {
             try
             {
-                if (ПродукцияDAO.Изменить_продукцию(продукция))
+                if (ПродукцияDAO.Изменить_продукцию(id,продукция))
                     return RedirectToAction("Index");
                 else
                     return View("Edit");
@@ -75,20 +81,20 @@ namespace Курсовик.Controllers
                 return View();
             }
         }
-
+        [Authorize(Roles = "Заведующий складом")]
         // GET: Home/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(String id)
         {
             return View(ПродукцияDAO.Продукция(id));
         }
 
         // POST: Home/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Продукция продукция)
+        public ActionResult Delete(String id, Продукция продукция)
         {
             try
             {
-                if (ПродукцияDAO.Удалить_продукцию(продукция))
+                if (ПродукцияDAO.Удалить_продукцию(id,продукция))
                     return RedirectToAction("Index");
                 else
                     return View("Delete");

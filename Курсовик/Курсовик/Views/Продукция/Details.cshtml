@@ -13,6 +13,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.Название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Категория)
         </dt>
 
@@ -55,6 +63,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Код_продукции  }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

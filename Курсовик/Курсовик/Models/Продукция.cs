@@ -8,6 +8,7 @@ namespace Курсовик.Models
     public class Продукция
     {
             public String Код_продукции { get; set; }
+            public String Название { get; set; }
             public int Категория { get; set; }
             public String Материал { get; set; }
             public float Масса { get; set; }

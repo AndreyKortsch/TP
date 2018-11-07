@@ -78,8 +78,9 @@ namespace Курсовик.DAO
                 "DELETE FROM Список_поставщиков WHERE код_поставщика=" + id, Сonnection);
                 cmd.ExecuteNonQuery();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                String a = ex.Message;
                 result = false;
             }
             finally
