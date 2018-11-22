@@ -56,7 +56,7 @@ namespace Курсовик.DAO
             bool result = true;
             try
             {
-                String sql = string.Format("UPDATE Список_продукции SET статус is null, расход_по_норме is null");
+                String sql = string.Format("UPDATE Список_продукции SET статус=null, расход_по_норме=null");
                 SqlCommand cmd = new SqlCommand(sql, Сonnection);
                 cmd.ExecuteNonQuery();
             }
