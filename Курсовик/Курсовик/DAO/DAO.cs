@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
+using System.Configuration;
+
 namespace Курсовик.DAO
 {
     
     
         public class DAO
         {
-            private const string ConnectionString =
-           "Data Source=.\\SQLEXPRESS;Initial Catalog=Склад;Integrated Security=True";
+            private string ConnectionString =
+           ConfigurationManager.ConnectionStrings["YourDB"].ConnectionString;
             protected SqlConnection Сonnection { get; set; }
             public void Connect()
             {

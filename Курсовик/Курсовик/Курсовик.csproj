@@ -204,6 +204,7 @@
     <Compile Include="Controllers\ПоступлениеController.cs" />
     <Compile Include="Controllers\ПродукцияController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\РасходController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\ВыдачаDAO.cs" />
     <Compile Include="DAO\КатегорияDAO.cs" />
@@ -211,6 +212,7 @@
     <Compile Include="DAO\Поставщик_категорияDAO.cs" />
     <Compile Include="DAO\ПоступлениеDAO.cs" />
     <Compile Include="DAO\ПродукцияDAO.cs" />
+    <Compile Include="DAO\РасходDAO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -223,6 +225,7 @@
     <Compile Include="Models\Продукция.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Расход.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -313,6 +316,9 @@
     <Content Include="Views\Выдача\Edit.cshtml" />
     <Content Include="Views\Выдача\Delete.cshtml" />
     <Content Include="Views\Выдача\Index3.cshtml" />
+    <Content Include="Views\Расход\Index.cshtml" />
+    <Content Include="Views\Расход\Edit.cshtml" />
+    <Content Include="Views\Расход\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
