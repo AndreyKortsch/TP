@@ -1,0 +1,60 @@
+﻿@model IEnumerable<Курсовик.Models.Расход>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Код_продукции)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Название)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Приход_за_сутки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Расход_за_сутки)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Расход_по_норме)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Коэффициент_расхода)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Код_продукции)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Название)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Приход_за_сутки)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Расход_за_сутки)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Расход_по_норме)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Коэффициент_расхода)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Назад", "Index", "Продукция")
+</p>

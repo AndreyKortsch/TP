@@ -8,6 +8,43 @@ namespace Курсовик.DAO
 {
     public class РасходDAO:DAO
     {
+        public List<Расход> Табель_расхода(String sql)
+        {
+            Connect();
+            List<Расход> Табель_расхода = new List<Расход>();
+            try
+            {
+                SqlCommand command = new SqlCommand(sql, Сonnection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Расход товар = new Расход();
+                    товар.Код_продукции = Convert.ToString(reader["a"]);
+                    товар.Название = Convert.ToString(reader["b"]);
+                    товар.Приход_за_сутки = Convert.ToInt32(reader["c"]);
+                    товар.Расход_за_сутки = Convert.ToInt32(reader["d"]);
+                    товар.Расход_по_норме = Convert.ToUInt32(reader["e"]);
+                    //товар.Код_продукции = reader.GetString(0);
+                    //товар.Название = reader.GetString(1);
+                    //товар.Приход_за_сутки =  reader.GetInt32(6);
+                    //товар.Расход_за_сутки = reader.GetInt32(4);
+                    //товар.Расход_по_норме= reader.GetFloat(2);
+                    товар.Коэффициент_расхода = (float )товар.Расход_за_сутки/(float)товар.Приход_за_сутки;
+                    Табель_расхода.Add(товар);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                String a = ex.Message;
+                a="";
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return Табель_расхода;
+        }
         public bool Обновить_статус(String id, Расход расход)
         {
             Connect();

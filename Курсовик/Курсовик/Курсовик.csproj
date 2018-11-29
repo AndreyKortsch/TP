@@ -319,6 +319,7 @@
     <Content Include="Views\Расход\Index.cshtml" />
     <Content Include="Views\Расход\Edit.cshtml" />
     <Content Include="Views\Расход\Index1.cshtml" />
+    <Content Include="Views\Расход\Index4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

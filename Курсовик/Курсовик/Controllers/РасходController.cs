@@ -40,6 +40,28 @@ namespace Курсовик.Controllers
                 return View("Index1");
 
         }
+        public ActionResult Index4()
+        {
+            String sql = "SELECT "+ 
+        "m.код_продукции as a, "+ 
+        "m.название as b, "+
+        "m.расход_по_норме as c, "+ 
+        "m.статус, "+ 
+        "sum(u.количество) as d, "+
+        "u.код_продукции, "+
+        "sum(n.количество) as e, "+
+        "n.код_продукции "+
+        "FROM Список_продукции m "+
+            "INNER JOIN Журнал_выдач u "+
+                "ON m.код_продукции = u.код_продукции "+
+            "INNER JOIN Журнал_поступлений n "+
+                 "ON m.код_продукции = n.код_продукции "+
+        "WHERE m.статус = 'создан' "+
+        "Group By u.код_продукции, m.код_продукции, "+
+        "n.код_продукции, m.название, m.статус, " +
+        "m.расход_по_норме";
+            return View(РасходDAO.Табель_расхода(sql));
+        }
         // GET: Расход/Details/5
         public ActionResult Details(int id)
         {
