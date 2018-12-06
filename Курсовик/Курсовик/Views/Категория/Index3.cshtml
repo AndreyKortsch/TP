@@ -1,0 +1,106 @@
+﻿@model Курсовик.Models.Кат_продукция
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Кат_продукция</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_продукции)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_продукции)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название_продукции)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название_продукции)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Категория)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Категория)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Материал)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Материал)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Масса)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Масса)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Цена_за_единицу)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Цена_за_единицу)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Код_категории)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Код_категории)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Название)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Название)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Дата_создания)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Дата_создания)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Количество_товара)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Количество_товара)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

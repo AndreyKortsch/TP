@@ -41,7 +41,35 @@ namespace Курсовик.DAO
                     Disconnect();
                 }
                 return Список_продукции;
+
             }
+        public bool Добавить_категорию(Продукция продукт)
+        {
+            bool result = true;
+            Connect();
+            try
+            {
+                SqlCommand cmd = new SqlCommand(
+                "UPDATE Список_продукции SET номер_категории ='{1}'" +
+                "WHERE код_продукции='{0}'", Сonnection);
+                cmd.Parameters.Add(new SqlParameter("@код_продукции", продукт.Код_продукции));
+                cmd.Parameters.Add(new SqlParameter("@номер_категории", продукт.Категория));
+                cmd.ExecuteNonQuery();
+                String sql = string.Format("UPDATE Список_категорий SET количество=количество+'{0}'" +
+                "WHERE номер='{1}'", продукт.Количество, продукт.Категория);
+                SqlCommand cmd1 = new SqlCommand(sql, Сonnection);
+                cmd1.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return result;
+        }
         public bool Добавить_продукт(Продукция продукт)
         {
             bool result = true;

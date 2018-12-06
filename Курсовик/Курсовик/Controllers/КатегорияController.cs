@@ -8,15 +8,22 @@ using Курсовик.DAO;
 
 namespace Курсовик.Controllers
 {
-    [Authorize(Roles = "Администратор,Учетчик выдачи")]
+    [Authorize(Roles = "Администратор,Учетчик выдачи, Заведующий складом")]
     public class КатегорияController : Controller
     {
         КатегорияDAO КатегорияDAO = new КатегорияDAO();
+        Кат_продукцияDAO Кат_ПродукцияDAO = new Кат_продукцияDAO();
         
         // GET: Категория
         public ActionResult Index()
         {
             return View(КатегорияDAO.Список_категорий());
+        }
+        public ActionResult Index2(Кат_продукция продукция)
+        {
+            
+            return View(Кат_ПродукцияDAO.Список_категорий(продукция));
+            
         }
         
         // GET: Категория/Details/5

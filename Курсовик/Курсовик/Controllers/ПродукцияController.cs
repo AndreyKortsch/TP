@@ -13,8 +13,9 @@ namespace Курсовик.Controllers
     public class ПродукцияController : Controller
     {   
         ПродукцияDAO ПродукцияDAO = new ПродукцияDAO();
-       // GET: /Home/
-        
+        Кат_продукцияDAO Кат_ПродукцияDAO = new Кат_продукцияDAO();
+        // GET: /Home/
+
         public ActionResult Index()
         {
             String sql = "SELECT * FROM Список_продукции";
@@ -24,6 +25,15 @@ namespace Курсовик.Controllers
         {
             String sql = "SELECT * FROM Список_продукции WHERE номер_категории="+id;
             return View(ПродукцияDAO.Список_продукции(sql));
+        }
+        public ActionResult Index3(Продукция продукция)
+        {
+            if (ПродукцияDAO.Добавить_категорию(продукция))
+            {
+                String sql = "SELECT * FROM Список_продукции";
+                return View(ПродукцияDAO.Список_продукции(sql));
+            }
+            else return RedirectToAction("Сreate","Продукция");
         }
         // GET: /Home/Details/5
         public ActionResult Details(String id)
@@ -40,14 +50,11 @@ namespace Курсовик.Controllers
         //
         // POST: /Home/Create
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Create(Продукция продукция)
+        public ActionResult Create(Кат_продукция продукция)
         {
             try
             {
-                if (ПродукцияDAO.Добавить_продукт(продукция))
-                    return RedirectToAction("Index");
-                else
-                    return View("Create");
+                return RedirectToAction("Index2", "Категория", продукция);
             }
             catch
             {
@@ -103,6 +110,35 @@ namespace Курсовик.Controllers
             }
             catch
             {
+                return View();
+            }
+        }
+        
+        // POST: Категория/Delete/5
+        
+        public ActionResult Index4(Кат_продукция id)
+        {
+            try
+            {
+                Продукция продукция = new Продукция();
+                продукция.Категория = id.Код_категории;
+                продукция.Код_продукции = id.Код_продукции;
+                продукция.Количество = id.Количество;
+                продукция.Масса = id.Масса;
+                продукция.Материал = id.Материал;
+                продукция.Название = id.Название_продукции;
+                продукция.Цена_за_единицу = id.Цена_за_единицу;
+
+                if (ПродукцияDAO.Добавить_продукт(продукция))
+                    return RedirectToAction("Index");
+                else
+                    return View("Index3");
+
+
+            }
+            catch(Exception ex)
+            {
+                String a = ex.Message;
                 return View();
             }
         }

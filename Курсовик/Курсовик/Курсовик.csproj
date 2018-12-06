@@ -207,6 +207,7 @@
     <Compile Include="Controllers\РасходController.cs" />
     <Compile Include="DAO\DAO.cs" />
     <Compile Include="DAO\ВыдачаDAO.cs" />
+    <Compile Include="DAO\Кат_продукцияDAO.cs" />
     <Compile Include="DAO\КатегорияDAO.cs" />
     <Compile Include="DAO\ПоставщикDAO.cs" />
     <Compile Include="DAO\Поставщик_категорияDAO.cs" />
@@ -218,6 +219,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Выдача.cs" />
+    <Compile Include="Models\Кат_продукция.cs" />
     <Compile Include="Models\Категория.cs" />
     <Compile Include="Models\Поставщик.cs" />
     <Compile Include="Models\Поставщик_категория.cs" />
@@ -320,6 +322,8 @@
     <Content Include="Views\Расход\Edit.cshtml" />
     <Content Include="Views\Расход\Index1.cshtml" />
     <Content Include="Views\Расход\Index4.cshtml" />
+    <Content Include="Views\Категория\Index2.cshtml" />
+    <Content Include="Views\Категория\Index3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
